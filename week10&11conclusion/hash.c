@@ -82,3 +82,4 @@ int main(){
   }
   return 0;
 }
+//core: the abstractions of functions and time/space optimization

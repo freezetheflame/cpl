@@ -57,16 +57,90 @@ for (int i = 1; i < n; ++i) {
         }
         swap(&a[minpos], &a[i]);
     }
-    ```
-    4.插入排序
-    ```
-    for (int i = 2; i <= n; ++i) {
-        int key = a[i], j = i - 1;
-        while (a[j] > key && j >= 1) {
-            a[j + 1] = a[j];
-            --j;
-        }
-        a[j + 1] = key;
+```
+4.插入排序
+```
+for (int i = 2; i <= n; ++i) {
+    int key = a[i], j = i - 1;
+    while (a[j] > key && j >= 1) {
+         a[j + 1] = a[j];
+         --j;
     }
-    ```
-    
+    a[j + 1] = key;
+}
+```
+5.链表的基本操作
+```
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+// 初始化链表头
+Node* initList() {
+    Node* head = (Node*)malloc(sizeof(Node));
+    head->next = NULL;
+    return head;
+}
+//注：根据需求修改链表NODE结构体的内容
+// 添加元素到链表末尾
+void add(Node* head, int data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    Node* p = head;
+    while (p->next) {
+        p = p->next;
+    }
+    p->next = node;
+}
+
+// 删除链表中指定元素
+void removeNode(Node* head, int data) {
+    Node* p = head;
+    while (p->next) {
+        if (p->next->data == data) {
+//or strcmp if data is a string
+            Node* q = p->next;
+            p->next = q->next;
+            free(q);
+            return;
+        }
+        p = p->next;
+    }
+}
+
+// 在指定位置插入元素
+void insert(Node* head, int index, int data) {
+    Node* node = (Node*)malloc(sizeof(Node));
+    node->data = data;
+    node->next = NULL;
+    Node* p = head;
+    int i = 0;
+    while (p->next && i < index) {
+        p = p->next;
+        i++;
+    }
+    node->next = p->next;
+    p->next = node;
+}
+
+// 打印链表中的所有元素
+void printList(Node* head) {
+    Node* p = head->next;
+    while (p) {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+}
+
+// 释放链表内存
+void freeList(Node* head) {
+    Node* p = head;
+    while (p) {
+        Node* q = p->next;
+        free(p);
+        p = q;
+    }
+}
+```

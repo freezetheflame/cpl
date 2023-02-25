@@ -9,3 +9,64 @@
 >---
 >                   from SA
 下面主要罗列总结一些思想方法和封装好的代码块
+1.merge_sort的merge和sort
+```
+void merge(int l, int mid, int r) {
+    int i = l, j = mid + 1;
+    for (int k = l; k <= r; ++k) {
+        if ((j > r && i <= mid) || (i <= mid && a[i] <= a[j])) {
+            b[k] = a[i++];
+        }
+        else {
+            b[k] = a[j++];
+        }
+    }
+    for (int k = l; k <= r; ++k) {
+        a[k] = b[k];
+    }
+}
+```
+```
+void mergeSort(int l, int r) {
+    if (l == r) {
+        return;
+    }
+    int mid = (l + r) >> 1;
+    mergeSort(l, mid);
+    mergeSort(mid + 1, r);
+    merge(l, mid, r);
+}
+```
+2.swap的指针使用（其实很简单）
+```
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+```
+3.选择排序核心部分
+```
+for (int i = 1; i < n; ++i) {
+        int minx = a[i], minpos = i;//每次都从无序位i开始找最小的丢到i+1位
+        for (int j = i + 1; j <= n; ++j) {
+            if (a[j] < minx) {
+                minx = a[j];
+                minpos = j;
+            }
+        }
+        swap(&a[minpos], &a[i]);
+    }
+    ```
+    4.插入排序
+    ```
+    for (int i = 2; i <= n; ++i) {
+        int key = a[i], j = i - 1;
+        while (a[j] > key && j >= 1) {
+            a[j + 1] = a[j];
+            --j;
+        }
+        a[j + 1] = key;
+    }
+    ```
+    

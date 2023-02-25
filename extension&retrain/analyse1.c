@@ -1,5 +1,5 @@
 //Q from TEST A
-//Sakiyary uses Sliding Window to solve the problem at a low cost
+//Sakiyary uses Sliding Window to solve the problem at a low cost->前缀和做法
 #include<stdio.h>
 int sum[1301][1301],value[600][600];
 int main()

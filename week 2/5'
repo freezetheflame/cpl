@@ -1,0 +1,10 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+	int x,y,fx,fy,sbx,sby,posx,posy;
+	scanf("%d%d%d%d%d%d",&x,&y,&fx,&fy,&sbx,&sby);
+	int sum=0;
+	if(fx==x&&sbx==x)
+	{
+		sum=
+	}
